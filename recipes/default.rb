@@ -59,7 +59,7 @@ service "znc" do
   action [:enable, :start]
 end
 
-users = search(:users, 'groups:znc')
+users = Chef::EncryptedDataBagItem.load("znc", "users")
 
 # znc doesn't like to be automated...this prevents a race condition
 # http://wiki.znc.in/Configuration#Editing_config
