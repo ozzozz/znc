@@ -56,21 +56,23 @@ end
 
 service "znc" do
   supports :restart => true
+  subscribes :reload, "template[/tmp/somefile]", :immediately
   action [:enable, :start]
 end
+
 
 users = Chef::EncryptedDataBagItem.load("znc", "users")
 
 # znc doesn't like to be automated...this prevents a race condition
 # http://wiki.znc.in/Configuration#Editing_config
-execute "force-save-znc-config" do
-  command "pkill -SIGUSR1 znc"
-  action :run
-end
-execute "reload-znc-config" do
-  command "pkill -SIGHUP znc"
-  action :nothing
-end
+#execute "force-save-znc-config" do
+#  command "pkill -SIGUSR1 znc"
+#  action :run
+#end
+#execute "reload-znc-config" do
+#  command "pkill -SIGHUP znc"
+#  action :nothing
+#end
 
 # render znc.conf
 template "#{node['znc']['data_dir']}/configs/znc.conf" do
@@ -88,6 +90,5 @@ template "#{node['znc']['data_dir']}/configs/znc.conf" do
       "sha256##{hash}"
     end
   end
-  notifies :run, "execute[reload-znc-config]", :immediately
+  notifies :restart, resources(:services, "znc")
 end
-
