@@ -81,7 +81,7 @@ template "#{node['znc']['data_dir']}/configs/znc.conf" do
   owner node['znc']['user']
   group node['znc']['group']
   variables(
-    :users => users
+    :users => users["users"]
   )
   helpers do
     def hash_password(value)
