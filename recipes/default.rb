@@ -83,12 +83,12 @@ template "#{node['znc']['data_dir']}/configs/znc.conf" do
   variables(
     :users => users
   )
-  helperhash_password do
-    def sha256(value)
+  helpers do
+    def hash_password(value)
       require 'digest/sha2'
       hash = Digest::SHA2.new(256) << value
       "sha256##{hash}"
     end
   end
-  notifies :restart, resources(:services, "znc")
+  notifies :restart, resources(:service => "znc")
 end
