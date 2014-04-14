@@ -19,7 +19,7 @@ LoadModule   = <%= "#{mod} #{params}".strip  %>
 <% end -%>
 
 <% @users.each do |u| %>
-<User <%= u['znc']['nick'] || u['id']  %>>
+<User <%= u['id']  %>>
 	Pass = <%= hash_password(u['znc']['pass']) %>
 	Nick = <%= u['znc']['nick'] || u['id'] %>
 	AltNick = <%= u['znc']['alt_nick'] || "#{u['id']}_" %>
