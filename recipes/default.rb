@@ -61,7 +61,7 @@ service "znc" do
 end
 
 
-users = Chef::EncryptedDataBagItem.load("znc", "users")
+users = data_bag_item("znc", "users")
 
 # znc doesn't like to be automated...this prevents a race condition
 # http://wiki.znc.in/Configuration#Editing_config
