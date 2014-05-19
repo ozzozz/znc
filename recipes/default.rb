@@ -38,7 +38,7 @@ bash "generate-pem" do
   code <<-EOH
   umask 077
   openssl genrsa 2048 > znc.key
-  openssl req -subj /C=US/ST=Several/L=Locality/O=Example/OU=Operations/CN=#{node['fqdn']}/emailAddress=znc@#{node['fqdn']} \
+  openssl req -subj /C=US/ST=Several/L=Locality/O=Example/OU=Operations/CN=#{node['znc']['server_name']}/emailAddress=znc@#{node['znc']['server_name']} \
    -new -x509 -nodes -sha1 -days 3650 -key znc.key > znc.crt
   cat znc.key znc.crt > znc.pem
   EOH
