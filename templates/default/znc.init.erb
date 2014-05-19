@@ -20,7 +20,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin
 DESC="znc, an advanced modular IRC bouncer"
 NAME=znc
 DAEMON=$(which $NAME)
-DAEMON_ARGS="-d /etc/znc"
+DAEMON_ARGS="-d <%= node['znc']['data_dir'] %>"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 USER=<%= node['znc']['user'] %>
