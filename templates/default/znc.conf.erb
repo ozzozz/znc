@@ -9,7 +9,8 @@
 AnonIPLimit  = 10
 MaxBufferSize= <%= node['znc']['max_buffer_size'] %>
 SSLCertFile  = <%= node['znc']['data_dir'] %>/znc.pem
-Listener4    = +7777
+Listener4    = irc_only <%= node['znc']['irc_port'] %>
+Listener4    = web_only <%= node['znc']['web_port'] %>
 ConnectDelay = 5
 ServerThrottle = 30
 Skin         = <%= node['znc']['skin'] %>

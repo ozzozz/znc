@@ -34,6 +34,8 @@ default['znc']['module_dir']      = "#{znc['data_dir']}/modules"
 default['znc']['users_dir']       = "#{znc['data_dir']}/users"
 
 default['znc']['port']            = "+7777"
+default['znc']['irc_port']        = "+7777"
+default['znc']['web_port']        = "+7777"
 default['znc']['skin']            = "dark-clouds"
 default['znc']['max_buffer_size'] = 500
 default['znc']['modules']         = %w{ webadmin adminlog }
